@@ -1,0 +1,7 @@
+textarea{
+    resize: none;
+}
+
+hr{
+    border-bottom: 1px dashed #299;
+}

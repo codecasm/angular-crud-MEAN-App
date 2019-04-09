@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 m-auto">
+      <form [formGroup]='updateForm' (ngSubmit)='onUpdate()'>
+        <h1 class="text-center">Edit Form</h1>
+        <!-- {{ updateForm.value | json}} -->
+
+        <div class="alert alert-success text-center" *ngIf="showMsg">Data updated successfully. <a
+            routerLink="/student-list">View the record Added</a></div>
+
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name : </label>
+              <input type="text" class="form-control lead" placeholder="e.g. psycho" formControlName='name'>
+              <div class="text-danger"
+                *ngIf="updateForm.controls['name'].invalid && updateForm.controls['name'].dirty || updateForm.controls['name'].touched">
+                <div *ngIf="updateForm.controls['name'].errors">
+                  <small *ngIf="updateForm.controls['name'].errors.required">Name is required</small>
+                  <small
+                    *ngIf="updateForm.controls['name'].errors.minlength || updateForm.controls['name'].errors.maxlength">Name
+                    must be between 5-20 characters</small>
+                </div>
+              </div>
+              <!-- <div class="text-danger">Name should be atleast 8 characters</div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Contact : </label>
+              <input type="number" class="form-control lead" placeholder="e.g. 8888444422" formControlName='contact'>
+              <div class="text-danger"
+                *ngIf="updateForm.controls['contact'].invalid && updateForm.controls['contact'].dirty || updateForm.controls['contact'].touched">
+                <div *ngIf="updateForm.controls['contact'].errors">
+                  <small *ngIf="updateForm.controls['contact'].errors.required">Contact is required</small>
+                  <small *ngIf="updateForm.controls['contact'].errors.pattern">Contact must be 10 digits</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Gender : </label>
+          <input type="radio" name="gender" formControlName='gender' value="male" class="ml-1"> Male
+          <input type="radio" name="gender" formControlName='gender' value="female" class="ml-1"> Female
+          <input type="radio" name="gender" formControlName='gender' value="others" class="ml-1"> Others
+          <div class="text-danger"
+            *ngIf="updateForm.controls['gender'].invalid && updateForm.controls['gender'].dirty || updateForm.controls['gender'].touched">
+            <div *ngIf="updateForm.controls['gender'].errors">
+              <small>Please one of the above option</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Email ID : </label>
+              <input type="email" class="form-control lead" placeholder="e.g. tp@example.com" formControlName='email'>
+              <div class="text-danger"
+                *ngIf="updateForm.controls['email'].invalid && updateForm.controls['email'].dirty || updateForm.controls['email'].touched">
+                <div *ngIf="updateForm.controls['email'].errors">
+                  <small *ngIf="updateForm.controls['email'].errors.required">Email is required</small>
+                  <small *ngIf="updateForm.controls['email'].errors.pattern">Email must be in valid format</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Course : </label>
+              <select name="" id="" class="form-control" appSelectValidtor='default' formControlName='course'>
+                <option value=''> -- select course --</option>
+                <option *ngFor='let course of courses'>{{course}}</option>
+              </select>
+              <div class="text-danger"
+                *ngIf="updateForm.controls['course'].invalid && updateForm.controls['course'].dirty || updateForm.controls['course'].touched">
+                <div *ngIf="updateForm.controls['course'].errors">
+                  <small>Please select a valid course</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address : </label>
+          <textarea name="" id="" cols="30" rows="5" class="form-control" formControlName='address'></textarea>
+          <div class="text-danger"
+            *ngIf="updateForm.controls['address'].invalid && updateForm.controls['address'].dirty || updateForm.controls['address'].touched">
+            <div *ngIf="updateForm.controls['address'].errors">
+              <small>Address is required</small>
+            </div>
+          </div>
+        </div>
+
+        <input type="submit" value="Update Info" class="btn btn-success" [disabled]='updateForm.invalid'>
+        <!-- <input type="button" routeLink='/student-list' value="Cancel" class="btn btn-success ml-2"> -->
+        <a routerLink='/student-list' value="Cancel" class="btn btn-success ml-2">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
