@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:4000'
+  apiBaseUrl: 'https://akmeancrud.herokuapp.com'
 };
 
 /*
